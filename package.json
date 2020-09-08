@@ -2,7 +2,8 @@
   "scripts": {
     "start": "expo start",
     "web": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "test:unit": "jest"
   },
   "dependencies": {
     "expo": "~38.0.0",
@@ -27,6 +28,18 @@
     "@types/react-dom": "~16.9.8",
     "@types/react-native": "~0.62.13",
     "babel-loader": "^8.0.6",
+    "jest": "^26.4.2",
+    "jest-expo": "^38.0.2",
+    "react-test-renderer": "^16.13.1",
     "typescript": "^3.7.2"
+  },
+  "jest": {
+    "preset": "jest-expo",
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|@sentry/.*)"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/__mocks__/globalMock.js"
+    ]
   }
 }
