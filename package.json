@@ -3,7 +3,9 @@
     "start": "expo start",
     "web": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "test:unit": "jest"
+    "test:unit": "jest",
+    "lint": "eslint",
+    "format": "prettier *.{js,tsx} -w"
   },
   "dependencies": {
     "expo": "~38.0.0",
@@ -19,6 +21,7 @@
   "devDependencies": {
     "@babel/core": "7.9.0",
     "@expo/webpack-config": "^0.11.11",
+    "@react-native-community/eslint-config": "^2.0.0",
     "@storybook/addon-actions": "~5.2.1",
     "@storybook/addon-links": "~5.2.1",
     "@storybook/addons": "~5.2.1",
@@ -28,8 +31,12 @@
     "@types/react-dom": "~16.9.8",
     "@types/react-native": "~0.62.13",
     "babel-loader": "^8.0.6",
+    "eslint": "^7.8.1",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-react-native-a11y": "^2.0.2",
     "jest": "^26.4.2",
     "jest-expo": "^38.0.2",
+    "prettier": "^2.1.1",
     "react-test-renderer": "^16.13.1",
     "typescript": "^3.7.2"
   },
