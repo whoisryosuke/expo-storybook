@@ -13,101 +13,18 @@
 
 You can use Storybook to test and share your component library quickly and easily! This example shows how to use Expo modules with Storybook CLI and Expo CLI.
 
-## Running with Storybook CLI
+> This is setup as Storybook with Expo, instead of Expo with Storybook. This means that it's a dedicated RN app for Storybook, instead of attaching a Storybook instance to your current app (if you have one). If you have a pre-existing app setup with Expo, you could setup Storybook in the same project. This is setup to be separate, for something like a design system.
 
-![expo web with storybook-cli](https://i.imgur.com/0x0Ecmp.png "expo web with storybook-cli")
+## Getting Started
 
-> web only
+1. `yarn` - Install dependencies
+1. `yarn web` - Run Storybook
 
-This method runs your Expo components in a Storybook-React environment. This is different to Expo web, but may prove helpful as the Storybook-React community is more robust than the Storybook-React Native community.
+### Running on Native Devices
 
-- Create Expo project `expo init my-project`
-  - You can use any template, we'll use the managed blank TypeScript project for this example.
-- `cd` into the project and run `npx -p @storybook/cli sb init --type react` to bootstrap a new React project
-- Install the expo webpack config so we can add unimodules support `yarn add -D @expo/webpack-config`
-- Create a [custom webpack config](./.storybook/webpack.config.js) `touch .storybook/webpack.config.js`
-
-  ```js
-  const { resolve } = require("path");
-  const { withUnimodules } = require("@expo/webpack-config/addons");
-
-  module.exports = ({ config }) => {
-    return withUnimodules(config, { projectRoot: resolve(__dirname, "../") });
-  };
-  ```
-
-- Run `yarn add -D @expo/webpack-config` to get the webpack-config added.
-
-- Run `yarn web` to try it out!
-  - The example should open to `http://localhost:6006/`
-- You may also want to add `storybook-static` to your `.gitignore`
-
-### 📁 File Structure
-
-```
-Expo with Storybook CLI
-├── stories
-│ └── Example.stories.js ➡️ A Storybook page to render
-├── .storybook
-│ ├── config.js ➡️ The entry point / config for a typical Storybook project.
-│ └── webpack.config.js ➡️ The custom Webpack config used to add Expo support to Storybook CLI.
-├── assets ➡️ All static assets for your project
-├── storybook-static ➡️ Generated Storybook files (should be ignored)
-└── babel.config.js ➡️ Babel config (should be using `babel-preset-expo`)
-```
-
-## Running with Expo CLI
-
-<img alt="storybook with expo-cli" src="https://i.imgur.com/Fpubaor.png">
-
-> This method is universal :]
-
-This project can be used for iOS, Android, and web! You may find that it's better to use it for native only, and to use the "Running with Storybook" method for web. Unlike the Expo + Next.js flow, you can use both web methods at the same time!
-
-- Create Expo project `expo init my-project`
-  - You can use any template, we'll use the managed blank TypeScript project for this example.
-- `cd` into the project and run `npx -p @storybook/cli sb init --type react` to bootstrap a new React project.
-- Install the Storybook React Native package:
-  - `yarn add -D @storybook/react-native`
-- In your `App.tsx` or `App.js`
-
-```ts
-import { configure, getStorybookUI } from "@storybook/react-native";
-
-configure(() => {
-  // Since require.context doesn't exist in metro bundler world, we have to
-  // manually import files ending in *.stories.js
-  require("./stories");
-}, module);
-
-export default getStorybookUI();
-```
-
-- Create a file for importing all of the stories ([`stories/index.js`](./stories/index.js)):
-
-  - `touch stories/index.js`
-  - Import all of your stories in this file. Ex:
-
-  ```js
-  // stories/index.js
-  import "./1-Button.stories";
-  ```
-
-- Register your stories for React Native:
-
-```diff
-// Example.stories.js
-+ import { storiesOf } from '@storybook/react-native';
-
-export const text = () => ( /_ Example JSX _/ );
-
-// Register your story with the `module`, name, and React functional component.
-
-+ storiesOf('Button', module).add('Text', text);
-
-```
-
-- Now run `expo start` to see it in action!
+1. `yarn start` - Start Expo in browser (should open a new tab)
+1. Wait for app to bundle. This may take 30+ seconds.
+1. Use QR code from Expo to open app on testing device (or press `i` to open simulator if available)
 
 ### 📁 File Structure
 
