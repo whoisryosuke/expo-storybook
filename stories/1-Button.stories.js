@@ -4,10 +4,13 @@ import { storiesOf } from "@storybook/react-native";
 import { Button } from "react-native";
 import styled from "styled-components/native";
 
-const StyledButton = styled(Button)`
+const StyledButton = styled.TouchableOpacity`
   background-color: red;
-  color: red;
-  background: red;
+  padding: 3px;
+`;
+
+const StyledText = styled.Text`
+  color: white;
 `;
 
 export default {
@@ -18,8 +21,16 @@ export const text = () => (
   <Button title="Hello Button" onPress={action("clicked")} />
 );
 export const styledComponent = () => (
-  <StyledButton title="Hello Button" onPress={action("clicked")} />
+  <StyledButton onPress={action("clicked")}>
+    <StyledText>Hello Button</StyledText>
+  </StyledButton>
+);
+export const red = () => (
+  <Button title="Hello Button" color="red" onPress={action("clicked")} />
 );
 
 // On-Device Register
-storiesOf("Button", module).add("Text", text);
+storiesOf("Button", module)
+  .add("Text", text)
+  .add("Styled Components", styledComponent)
+  .add("Red", red);
